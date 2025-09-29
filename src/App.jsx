@@ -9,7 +9,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <UserHeader />
       <Routes>
         <Route path="/" element={<LoginPage />} />
       </Routes>
