@@ -1,5 +1,5 @@
 import Header from '../comps/Header';
-const LoginPage = () =>{
+const SignupPage = () =>{
     return (
     <div className="flex flex-col content-center items-center font-arimo">
             <div className="p-5 m-5 text-1xl font-mono rounded-lg border-2">
@@ -15,4 +15,4 @@ const LoginPage = () =>{
     )
 };
 
-export default LoginPage;
+export default SignupPage;
