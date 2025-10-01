@@ -5,14 +5,13 @@ import HomePage from './pages/HomePage.jsx'
 import SettingsPage from './pages/SettingsPage.jsx'
 import UserHeader from './comps/UserHeader.jsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import './App.css'
 
 function App() {
 
-
   return (
     <BrowserRouter>
-      <UserHeader />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />

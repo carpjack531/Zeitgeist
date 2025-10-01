@@ -1,8 +1,10 @@
 import React from 'react';
+import UserHeader from '../comps/UserHeader.jsx'
+const SettingsPage = (props) => {
 
-const SettingsPage = () => {
     return (
-        <div style={{ textAlign: 'center', padding: '20px' }}>
+        <div className="text-center p-2 ">
+                    <UserHeader/>
             <h1>This where we would have our settings!</h1>
             <p>IF WE HAD ONE!</p>
         </div>

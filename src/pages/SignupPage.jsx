@@ -1,16 +1,28 @@
 import Header from '../comps/Header';
+import test from "../assets/test.jpg"
+import React, { useState, useEffect } from 'react';
 const SignupPage = () =>{
+  
     return (
-    <div className="flex flex-col content-center items-center font-arimo">
-            <div className="p-5 m-5 text-1xl font-mono rounded-lg border-2">
-                <p className="text-4xl mb-9">Sign Up</p>
-                <p> Username</p>
-                <input type="email"  className="rounded-sm bg-gray-300 mb-5"/>
-                <p>Password</p>
-                <input type="password" className="rounded-sm bg-gray-300"/>
-                <p>Confirm Password</p>
-                <input type="password" className="rounded-sm bg-gray-300"/>
-            </div>
+    //Just a wrapper for components that maintains flex flow
+    <div className="min-h-screen bg-gray-100 flex flex-col  py-20 justify-center items-center">
+        <div className="sm:mx-auto sm:w-full sm:max-w-md">
+            <h1 className="text-center text-3xl font-extrabold mb-5 ">Sign Up</h1>
+            <a href="/login" className="text-center text-blue-600 font-semibold">or log into existing account</a>
+        </div>
+        <div className= "mx-auto max-w-xl rounded-xl shadow-xl p-20 mt-5 mb-15 items-center bg-white justify-center font-arimo"> 
+                <div className="mx-auto text-center">
+                    <label for="email" className="block font-semibold  text-start">Email</label>
+                    <input id="email" type="email"  className="w-full  p-2 rounded-md bg-gray-200  focus:bg-gray-50 mb-5"/>
+                    <label for="username" className="block font-semibold  text-start">Username</label>
+                    <input id="username" type="username"  className="w-full  p-2 rounded-md bg-gray-200  focus:bg-gray-50 mb-5"/>
+                    <label for="password" className="block font-semibold text-start">Password</label>
+                    <input id="password" type="password" className="w-full p-2 rounded-md bg-gray-200 focus:bg-gray-50 mb-5"/>
+            
+                    <input type="submit" className="w-full mt-5 rounded-sm p-2 hover:bg-blue-400 bg-purple-300 mt-10"/>
+                </div>
+        </div>
+            <a href="/" className="text-center text-blue-600 font-semibold">Return to home screen</a>
     </div>
     )
 };
