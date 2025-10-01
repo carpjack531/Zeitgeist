@@ -6,6 +6,7 @@ const AdminHeader = (props) => {
     <Header title="Zeitgeist">
         <MenuItem value="Home" page="home"/>
         <MenuItem value="Login" page="add"/>
+        <MenuItem value="Sign Up" page="signup"/>
         <MenuItem value="Settings"/>
     </Header>
     );
