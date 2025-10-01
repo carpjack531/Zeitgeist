@@ -10,6 +10,15 @@ function MenuItem (props){
         case "login":
             navigate("/login");
             break;
+        case "signup":
+            navigate("/signup");
+            break;
+        case "home":
+            navigate("/");
+            break;
+        case "settings":
+            navigate("/settings");
+            break;
         }
     }
 
