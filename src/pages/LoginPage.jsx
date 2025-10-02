@@ -18,7 +18,7 @@ const LoginPage = () =>{
                     <input id="password" type="password" className="w-full p-2 rounded-md bg-gray-200 focus:bg-gray-50 mb-5"/>
                      <a href="/" className="text-center text-blue-600 font-semibold">Forgot Password?</a>
             
-                    <input type="submit" className="w-full mt-5 rounded-sm p-2 hover:bg-blue-400 bg-purple-300 mt-10"/>
+                    <input type="submit" className="w-full rounded-sm p-2 hover:bg-blue-400 bg-purple-300 mt-10"/>
                 </div>
         </div>
             <a href="/" className="text-center text-blue-600 font-semibold">Return to home screen</a>
