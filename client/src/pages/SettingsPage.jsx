@@ -7,7 +7,9 @@ const SettingsPage = (props) => {
             <div className="flex flex-row bg-pastel-purple-200">
                 <h1 className="font-bold text-4xl">Settings</h1>
             </div>
-            <p>IF WE HAD ONE!</p>
+            <div>
+
+            </div>
         </div>
     );
 };
