@@ -10,7 +10,7 @@ const LoginPage = () =>{
             <h1 className="text-center text-3xl font-extrabold mb-5 ">Sign In</h1>
             <a href="/signup" className="text-center text-blue-600 font-semibold">or create an account</a>
         </div>
-        <div className= "mx-auto max-w-xl rounded-xl shadow-xl p-15 mt-5 mb-15 items-center bg-white justify-center font-arimo"> 
+        <div className= "mx-auto max-w-xl rounded-xl shadow-xl p-15 mt-5 mb-15 items-center bg-pastel-blue-100 justify-center font-arimo"> 
                 <div className="mx-auto text-center">
                     <label for="email" className="block font-semibold  text-start">Username or Email</label>
                     <input id="email" type="email"  className="w-full  p-2 rounded-md bg-gray-200  focus:bg-gray-50 mb-5"/>

@@ -23,7 +23,7 @@ function MenuItem (props){
     }
 
     return(
-        <button onClick={()=>{changePage(props.page)}} className="text-2xl hover:shadow-2xl hover:bg-cyan-50 rounded-2xl p-4">{props.value} </button>
+        <button onClick={()=>{changePage(props.page)}} className="text-2xl hover:animate-pulse hover:bg-cyan-50 rounded-2xl p-4">{props.value} </button>
     );
     
 

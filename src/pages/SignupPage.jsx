@@ -10,7 +10,7 @@ const SignupPage = () =>{
             <h1 className="text-center text-3xl font-extrabold mb-5 ">Sign Up</h1>
             <a href="/login" className="text-center text-blue-600 font-semibold">or log into existing account</a>
         </div>
-        <div className= "mx-auto max-w-xl rounded-xl shadow-xl p-20 mt-5 mb-15 items-center bg-white justify-center font-arimo"> 
+        <div className="mx-auto max-w-xl rounded-xl shadow-xl p-20 my-10 items-center bg-white justify-center font-arimo"> 
                 <div className="mx-auto text-center">
                       <label for="username" className="block font-semibold  text-start">Username</label>
                     <input id="username" type="username"  className="w-full  p-2 rounded-md bg-gray-200  focus:bg-gray-50 mb-5"/>
