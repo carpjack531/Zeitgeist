@@ -5,12 +5,12 @@ const SignupPage = () =>{
   
     return (
     //Just a wrapper for components that maintains flex flow
-    <div className="min-h-screen bg-gray-100 flex flex-col  py-20 justify-center items-center">
+    <div className="min-h-screen bg-pastel-purple-100 flex flex-col  py-20 justify-center items-center">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
             <h1 className="text-center text-3xl font-extrabold mb-5 ">Sign Up</h1>
             <a href="/login" className="text-center text-blue-600 font-semibold">or log into existing account</a>
         </div>
-        <div className="mx-auto max-w-xl rounded-xl shadow-xl p-20 my-10 items-center bg-white justify-center font-arimo"> 
+        <div className="mx-auto max-w-xl rounded-xl shadow-xl p-20 my-10 bg-white justify-center font-arimo"> 
                 <div className="mx-auto text-center">
                       <label for="username" className="block font-semibold  text-start">Username</label>
                     <input id="username" type="username"  className="w-full  p-2 rounded-md bg-gray-200  focus:bg-gray-50 mb-5"/>

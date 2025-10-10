@@ -1,19 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Roboto+Flex:opsz,wght@8..144,100..1000&family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap");
 @import "tailwindcss";
 
-@theme{
+@theme {
   --font-arimo: "Arimo", arimo;
   --color-navy-100: #4E56C0;
   --color-pastel-blue-100: #D5E3F0;
-  --color-pastel-purple-100: #A376A2;
-  --color-pastel-purple-200: #8D5F8C;
-  --color-pastel-purple-300: #6B3F69;
-
-  
-
+  --color-pastel-purple-100: #F6F4F7;
+  --color-pastel-purple-200: #EEE9EE;
+  --color-pastel-purple-300: #DDD3DE;
+  --color-pastel-purple-400: #CCBDCD;
+  --color-pastel-purple-500: #B39EB5;
+  --color-midnight-purple: #2E1A47;
 }
 
-
-#root{
+#root {
   text-align: center;
 }
