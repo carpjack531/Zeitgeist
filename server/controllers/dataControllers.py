@@ -6,6 +6,7 @@ router = APIRouter(
     prefix="/data", #Adds /data to all routes so localhost:8000/data will be the default
     tags=["data"]
 )
+
 AI = methods.ai.AI()
 
 class something(BaseModel):
