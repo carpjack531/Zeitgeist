@@ -80,10 +80,6 @@ celerybeat-schedule
 # dotenv
 .env
 
-# virtualenv
-venv/
-ENV/
-
 # Spyder project settings
 .spyderproject
 
@@ -99,7 +95,6 @@ ENV/
 [Ll]ocal
 [Ss]cripts
 pyvenv.cfg
-.venv
 pip-selfcheck.json
 
 ### JetBrains template
