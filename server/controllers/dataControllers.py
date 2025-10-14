@@ -1,13 +1,16 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
-import methods
+from methods import ai,data
+import datetime
+
 
 router = APIRouter(
     prefix="/data", #Adds /data to all routes so localhost:8000/data will be the default
     tags=["data"]
 )
 
-AI = methods.ai.AI()
+AI = ai.AI()
+
 
 class something(BaseModel):
     Mood: str
@@ -17,11 +20,10 @@ class something(BaseModel):
 
 @router.get("/getMood")
 def GetMood():
-    mood = AI.getMood([
-        "Sanae Takaichi set to become Japan's first female prime minister",
-        "Ottawa police are looking for an 80-year-old woman missing since Saturday morning",
-        "50 people die in a plane crash",
-        "People from Canada Lose their pets in the tsunami",
+    headlines = data.getHeadlines()
+    mood = AI.getMood(headlines)
+    
 
-        ])
+    for headline in headlines:
+        print(headline)
     return {"Mood": mood}
