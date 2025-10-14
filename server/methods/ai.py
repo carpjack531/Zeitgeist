@@ -1,4 +1,3 @@
-#TODO: Everything
 import cohere
 from dotenv import load_dotenv
 import os
@@ -15,6 +14,7 @@ class AI():
         for headline in headlines:
             data += f"Headline {counter}: {headline}\n"
             counter += 1
+
         mood = self.cohere.chat(
             message= data,
             model="command-r-plus-08-2024",

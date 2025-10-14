@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 from methods import ai,data
-import datetime
+from datetime import datetime
 
 
 router = APIRouter(
@@ -20,10 +20,29 @@ class something(BaseModel):
 
 @router.get("/getMood")
 def GetMood():
-    headlines = data.getHeadlines()
-    mood = AI.getMood(headlines)
-    
+    hasTodaysHeadline = False
+    with open("data/pastDates.txt", "r") as textFile:
+        dates = textFile.readlines()
+        for date in dates:
+            if date.split("~")[0] == str(datetime.now().date()):
+                hasTodaysHeadline = True
+                break
 
-    for headline in headlines:
-        print(headline)
-    return {"Mood": mood}
+    if hasTodaysHeadline:
+        return {"Mood": date.split("|")[1]}
+
+    else:
+        headlines = data.getHeadlines()
+        mood = AI.getMood(headlines)
+        HLs = ""
+
+        for i in range(len(headlines)-1):
+            HLs += headlines[i] + "|"
+        HLs+= headlines[len(headlines)-1]
+        print(HLs)
+
+        with open("data/pastDates.txt", "w") as textFile:
+            textFile.write(f"{datetime.now().date()}~{HLs}")
+
+
+        return {"Mood": mood}
