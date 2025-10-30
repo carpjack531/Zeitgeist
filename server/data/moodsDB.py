@@ -32,9 +32,24 @@ def shipIt(data: MoodData):
     connection = _getConnection()
     cursor = connection.cursor()
 
-    cursor.execute("INSERT INTO Moods VALUES (%s, %s, %s, %s, %s, %s, %s)", (data.Date, data.Mood1, data.Mood2, data.Mood3, data.Mood4, data.Mood5, data.Headlines))
-
+    cursor.execute(
+        "INSERT INTO Moods (moodDate, Mood1, Mood2, Mood3, Mood4, Mood5, Headlines) "
+        "VALUES (%s, %s, %s, %s, %s, %s, %s)",
+        (data.Date, data.Mood1, data.Mood2, data.Mood3, data.Mood4, data.Mood5, data.Headlines)
+    )
     connection.commit()
 
+    connection.close()
+    cursor.close()
+
     print("Moods inserted successfully")
+
+def getMoods():
+    connection = _getConnection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT Mood1, Mood2, Mood3, Mood4, Mood5 FROM Moods")
+    moods = cursor.fetchone()
+    connection.close()
+    cursor.close()
+    return moods
 

@@ -5,7 +5,10 @@ from fastapi import APIRouter
 from controllers import Classes
 
 
-router = APIRouter()
+router = APIRouter(
+    prefix="/data", #Adds /data to all routes so localhost:8000/data will be the default
+    tags=["data"]
+)
 
 @router.post("/register")
 def register(userInfo: Classes.User ):
@@ -29,7 +32,7 @@ def getMood():
         mood = AI.getMood(headlines)
 
         MData = Classes.MoodData
-        MData.Date = f"datetime.now().date()"
+        MData.Date = str(datetime.now().date())
         for i in range(0,4):
             if i ==0:
                 MData.Mood1 = mood.split(", ")[i]
@@ -41,10 +44,13 @@ def getMood():
                 MData.Mood4 = mood.split(", ")[i]
         MData.Mood5 = mood.split(", ")[4]
 
-        for hd in headlines:
-            MData.Headlines += f"{hd}|"
+        MData.Headlines = "|".join(headlines)
+
+        moodsDB.shipIt(MData) #Might need some error handling, unsure
+
+        return {"Moods": [MData.Mood1, MData.Mood2, MData.Mood3, MData.Mood4, MData.Mood5]}
 
     else:
-        pass
+        return{"Moods":moodsDB.getMoods()}
 
 
