@@ -20,4 +20,29 @@ def addBookmark(user: str, mood: str):
     connection.close()
     cursor.close()
 
+def deleteBookmark(user: str, mood: str):
+    connection = _getConnection()
+    cursor = connection.cursor()
 
+    cursor.execute("DELETE FROM Bookmarks WHERE UserID = %s AND MoodsID = %s", (user, mood))
+    connection.commit()
+    connection.close()
+    cursor.close()
+
+def getBookmark(user: str, mood: str):
+    connection = _getConnection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM Bookmarks WHERE UserID = %s AND MoodsID = %s", (user, mood))
+    result = cursor.fetchone()
+    connection.close()
+    cursor.close()
+    return result
+
+def getAllBookmarks(user: str):
+    connection = _getConnection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM Bookmarks WHERE UserID = %s", (user,))
+    result = cursor.fetchall()
+    connection.close()
+    cursor.close()
+    return result

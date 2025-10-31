@@ -9,8 +9,8 @@ class User(BaseModel):
     password:str
 
 class Bookmark(BaseModel):
-    UserName: str
-    Date: str
+    UserId: str
+    MoodId: str
 
 
 
