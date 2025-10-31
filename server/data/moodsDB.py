@@ -42,8 +42,6 @@ def shipIt(data: MoodData):
     connection.close()
     cursor.close()
 
-    print("Moods inserted successfully")
-
 def getMoods():
     connection = _getConnection()
     cursor = connection.cursor()

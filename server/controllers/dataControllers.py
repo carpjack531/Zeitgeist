@@ -1,6 +1,6 @@
 from methods import ai,data
 from datetime import datetime
-from data import usersDB, moodsDB
+from data import usersDB, moodsDB, bookmarkDB
 from fastapi import APIRouter
 from controllers import Classes
 
@@ -53,4 +53,7 @@ def getMood():
     else:
         return{"Moods":moodsDB.getMoods()}
 
-
+def addBookmark():
+    pass
+    # try:
+    #     bookmarkDB.addBookmark()

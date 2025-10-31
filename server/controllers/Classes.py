@@ -8,6 +8,14 @@ class User(BaseModel):
     name: str
     password:str
 
+class Bookmark(BaseModel):
+    UserName: str
+    Date: str
+
+
+
+
+
 #Not using base model since it is not going to be used in the API. This is for backend use
 class MoodData:
     Date: str
@@ -17,3 +25,4 @@ class MoodData:
     Mood4: str
     Mood5: str
     Headlines: str
+
