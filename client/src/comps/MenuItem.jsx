@@ -22,6 +22,9 @@ function MenuItem (props){
         case "settings":           
             navigate("/settings");
             break;
+        case "aboutus":
+            navigate("/aboutus");
+            break;
         
 
         }
