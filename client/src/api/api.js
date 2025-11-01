@@ -1,18 +1,34 @@
-const server = {
 
-} 
+const serverUrl = "https://raspberrypi.taile333c3.ts.net"
 
-// eslint-disable-next-line no-unused-vars
-const users = {
-
+//Server Function
+const server = (endpoint) =>{
+    console.log(`${serverUrl}${endpoint}`);
+    return `${serverUrl}${endpoint}`;
 }
 
-const get = {
+
+//User API
+const users = {
+    getAll: ()=>get()
+}
+
+//Mood API
+const mood = {
+    getToday: ()=>get(server("/mood/today")),
+}
+
+
+const get = async(url,responseFormat="json")=>{
+    let response= await fetch(url);
+    let result = await response[responseFormat]();
+    return result;
+
 
 }
 
 export{
    server,
-   get,
    users, 
+   mood,
 }

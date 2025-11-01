@@ -1,6 +1,18 @@
 import React from 'react';
-import UserHeader from '../comps/UserHeader.jsx'
+import UserHeader from '../comps/UserHeader.jsx';
+import {useState, useEffect} from "react"
+import {mood} from ".././api/api.js";
+
+
 const HomePage = () => { 
+    useEffect(()=>{
+      test();
+    },[]);
+
+    const test = async() =>{
+      const todaysMood = await(mood.getToday());
+      console.log(JSON.stringify(todaysMood));
+    }
     return (
 
         <div className="min-h-screen flex flex-col items-center bg-pastel-purple-300">
