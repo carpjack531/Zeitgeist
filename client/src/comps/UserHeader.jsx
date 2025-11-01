@@ -2,7 +2,7 @@ import Header from "./Header"
 import MenuItem from "./MenuItem"
 const UserHeader = (props) => {
     return(
-        <Header title="Zeitgeist" color="pastel-purple-500">
+        <Header title="Zeitgeist" bg="bg-pastel-purple-500">
             <MenuItem value="Home" page="home"/>
             <MenuItem value="Login" page="login"/>
             <MenuItem value="Sign Up" page="signup"/>

@@ -2,9 +2,12 @@
 import { useNavigate } from "react-router-dom";
 
 
+//Santisation-basically forces users to configure this from an external config file
+
 
 function MenuItem (props){
     const navigate = useNavigate();
+    //Temporary Function, could be improved
     const changePage = async(page)=>{ 
         switch(page){    
         case "login":
@@ -16,17 +19,18 @@ function MenuItem (props){
         case "home":
             navigate("/");
             break;
-        case "settings":
+        case "settings":           
             navigate("/settings");
             break;
+        
+
         }
     }
 
     return(
-        <button onClick={()=>{changePage(props.page)}} className="text-2xl hover:animate-pulse hover:bg-cyan-50 rounded-2xl p-4">{props.value} </button>
-    );
-    
+        <button onClick={()=>{changePage(props.page)}} className="text-lg hover:animate-pulse hover:bg-cyan-50 rounded-2xl p-4">{props.value} </button>
 
+    );
 }
 
 export default MenuItem;
