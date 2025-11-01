@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import UserHeader from '../comps/UserHeader.jsx'
 const HomePage = () => { 
+    
+    
+    const [dataObj, setDataObj] = useState({})
+
+    useEffect({
+        //setDataObj(API.getData());   // the json-obj containing the Moods and headlines returned from the API...
+    },[dataObj])
+    
     return (
 
         <div className="min-h-screen flex flex-col items-center bg-pastel-purple-300">
