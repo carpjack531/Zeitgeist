@@ -20,15 +20,20 @@ const mood = {
 
 
 const get = async(url,responseFormat="json")=>{
-    let response= await fetch(url);
-    let result = await response[responseFormat]();
-    return result;
-
-
+    try{
+        let response= await fetch(url);
+        if(!response.ok){
+            throw new Error(JSON.stringify(response.json));
+        }
+        let result = await response[responseFormat]();
+        return result;
+    }
+    catch(e){
+        console.log("Response Error: " + e);
+    }
 }
 
 export{
-   server,
    users, 
    mood,
 }
