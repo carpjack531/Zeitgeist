@@ -8,7 +8,7 @@ router = APIRouter(
 )
 
 
-@router.post("/register")
+@router.post("/addUser")
 def register(userInfo: _classes.User ):
     try:
         usersDB.registerUser(userInfo.name, userInfo.password)
@@ -20,3 +20,19 @@ def register(userInfo: _classes.User ):
 def login(userInfo: _classes.User ):
     result = usersDB.loginUser(userInfo.name, userInfo.password)
     return result
+
+@router.post("/deleteUser")
+def deleteUser( Username : str ):
+    try:
+        usersDB.deleteUser(Username)
+        return {"User": "Deleted"}
+    except Exception as e:
+        return {"error": f"{e}"}
+
+@router.get("/getAll")
+def getAllUsers():
+    try:
+        users = usersDB.getAllUsers()
+        return {"Users": users}
+    except Exception as e:
+        return {"error": f"{e}"}
