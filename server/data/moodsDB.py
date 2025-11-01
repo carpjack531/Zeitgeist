@@ -1,6 +1,6 @@
 import mysql.connector
 
-from controllers.Classes import MoodData
+from controllers._classes import MoodData
 
 config = {
     "host": "10.0.0.77",
@@ -42,8 +42,6 @@ def shipIt(data: MoodData):
     connection.close()
     cursor.close()
 
-    print("Moods inserted successfully")
-
 def getMoods():
     connection = _getConnection()
     cursor = connection.cursor()
@@ -53,3 +51,29 @@ def getMoods():
     cursor.close()
     return moods
 
+def getMoodFromId(id):
+    connection = _getConnection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM Moods WHERE MoodID = '%s'" % id)
+    moods = cursor.fetchone()
+    connection.close()
+    cursor.close()
+    return moods
+
+def getMoodFromDate(date):
+    connection = _getConnection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM Moods WHERE moodDate = '%s'" % date)
+    moods = cursor.fetchone()
+    connection.close()
+    cursor.close()
+    return moods
+
+def getHeadlines(id):
+    connection = _getConnection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT Headlines FROM Moods WHERE moodID = %s", (id,))
+    headlines = cursor.fetchone()
+    connection.close()
+    cursor.close()
+    return headlines[0].split("|")
