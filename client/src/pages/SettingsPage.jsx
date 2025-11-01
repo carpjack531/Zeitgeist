@@ -1,43 +1,42 @@
 import React from 'react';
 import UserHeader from '../comps/UserHeader.jsx'
-import SettingsHeader from "../comps/SettingsHeader.jsx"
 import IMG_0849 from '../assets/IMG_0849.jpg'
 // based off of the ui from: https://flowbite.com/application-ui/demo/users/settings/
 const SettingsPage = (props) => {
 
     const Entry = ({name,type})=>{
         return(
-            <div className="flex flex-row items-start justify-between">
-                <p>{name}</p>
-                <input type={type}/>
+            <div className="flex items-start justify-around m-2">
+                <p className="min-w-sm">{name}</p>
+                <input className="bg-white" type={type}/>
             </div>
         )
     }   
 
     return(
-        <div className="flex flex-col text-start items-start p-10 min-h-screen bg-amber-700 font-sans">
+        <div className="flex flex-col text-start p-10 min-h-screen bg-amber-700 font-sans items-center">
             <h1 className="text-4xl">Settings </h1>
-            <div className="flex flex-col m-10">
-                <h2>Account</h2>
-                <div className=""> 
-                    <Entry name="Email Address" type="text"/>
-                    <p>Date of Birth</p>
-                    <p>Location</p>
-                    <p>Delete Account</p>
+            <div className="flex flex-col my-10 content-between">
+                <h2>Account Information</h2>
+                <div className="my-10"> 
+                    <Entry name="Email Address"/>
+                    <Entry name="Date of Birth"/>
                     <p></p>
                 </div>
+
                 <h2>Preferences</h2>
-                <div className="">
+                <div className="my-10">
                     <p>Language</p>
                     <p>Toggle Dark Mode</p>
                     <p>Toggle Notifications</p>
                 </div>
 
-                <h2>Privacy</h2>
-                <div className="">
+                <h2>Data/Privacy</h2>
+                <div className="my-10">
                     <p>Request Data</p>
                     <p>Clear Bookmarks</p>
                     <p>Clear History</p>
+                    <p>Delete Account</p>
                 </div>
             </div>
 
