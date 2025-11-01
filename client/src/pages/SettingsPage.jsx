@@ -7,7 +7,7 @@ const SettingsPage = (props) => {
     const Entry = ({name,type})=>{
         return(
             <div className="flex items-start justify-around m-2">
-                <p className="min-w-sm">{name}</p>
+                <p className="min-w-">{name}</p>
                 <input className="bg-white" type={type}/>
             </div>
         )
