@@ -1,6 +1,6 @@
 import React from 'react';
 import UserHeader from '../comps/UserHeader.jsx';
-import {useState, useEffect} from "react"
+import {useEffect} from "react"
 import {mood} from ".././api/api.js";
 
 
