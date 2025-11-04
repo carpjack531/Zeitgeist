@@ -25,9 +25,6 @@ const LoginPage = () =>{
             localStorage.setItem("username", email);
             setMessage("Login successful!");
 
-            setTimeout(() => {
-            window.location.href = "/dashboard";
-            }, 1000);
         } else {
             setMessage("Invalid credentials");
         }

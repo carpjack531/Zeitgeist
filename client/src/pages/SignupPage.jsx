@@ -22,9 +22,9 @@ const SignupPage = () =>{
         const result = await users.addUser(username, password);
         console.log("Signup Result:", result);
 
-        if (result?.success || result?.status === "ok") {
-            setMessage("Account created successfully! Redirecting to login...");
-            setTimeout(() => (window.location.href = "/login"), 1500);
+        if (result?.User === "Registered") {
+          setMessage("Account created successfully! Redirecting to login...");
+          setTimeout(() => (window.location.href = "/login"), 1500);
         } else {
             setMessage(result?.message || "Signup failed. Try a different username/email.");
         }
