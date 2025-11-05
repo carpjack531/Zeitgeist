@@ -19,7 +19,9 @@
           ):(
             <>
             <MenuItem value="Home" page="home"/>
+            
             <MenuItem value="Profile" page="login"/>
+            <MenuItem value="Bookmark" page="bookmark"/>
             <MenuItem value="About Us" page="aboutus"/>
             </>
           )

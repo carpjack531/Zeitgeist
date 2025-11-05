@@ -14,15 +14,16 @@ const MenuItem = (props)=> {
     const navigate = useNavigate();
     //Updated Function, Now requires external config file
     const changePage = async(page)=>{
+        console.log(isLoggedIn);
         nav_config.forEach((item)=>{
             if(page === item.name){
                 if(item.authReq === true){
                     if(isLoggedIn){
-                        navigate(`/${item}`)
+                        navigate(`/${item.name}`)
                     }
                 }
                 else{
-                    navigate(`/${item}`)
+                    navigate(`/${item.name}`)
                 }
             }
         })
