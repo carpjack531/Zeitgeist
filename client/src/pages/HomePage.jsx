@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import UserHeader from '../comps/UserHeader.jsx';
 import {mood} from '../api/api.js';
-
+import {AuthContext} from "../api/AuthContext.jsx"
 
 const HomePage = () => { 
   const [moodData, setMoodData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
   useEffect(() => {
     const fetchToday = async () => {
       setLoading(true);
@@ -67,7 +68,7 @@ const HomePage = () => {
   };
 return (
     <div className="min-h-screen flex flex-col items-center bg-pastel-purple-300">
-      <UserHeader />
+      <UserHeader/>
 
       <div className="flex flex-col min-h-150 gap-6 text-center justify-center p-6">
         <p className="font-semibold text-blue-500">Today's current mood is...</p>
