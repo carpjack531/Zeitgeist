@@ -2,7 +2,7 @@
 export const nav_config =  
 [
 {
-    name: "home",
+    name: "",
     authReq: false,
 },
 {

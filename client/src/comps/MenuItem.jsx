@@ -1,9 +1,9 @@
 
 //TO-DO Implement actual authentication to determine routing
 import { useNavigate } from "react-router-dom";
-import {useState, useContext} from "react";
-import {AuthContext} from "../api/AuthContext.jsx"
-import {nav_config} from "../nav-consts";
+import { useContext } from "react";
+import { AuthContext } from "../api/AuthContext.jsx"
+import { nav_config } from "../nav-consts";
 
 //Santisation-basically forces users to configure this from an external config file
 

@@ -1,14 +1,15 @@
   import MenuItem from './MenuItem.jsx'
   import Header from "./Header.jsx"
-  import { useContext } from 'react';
+  import { useEffect, useContext } from 'react';
   import {AuthContext} from "../api/AuthContext.jsx"
 
 
-  const UserHeader = (props) => {
-      const {isLoggedIn} = useContext(AuthContext);
+  const UserHeader = () => {
+    const {isLoggedIn} = useContext(AuthContext);
+
     return(
         <Header title="Zeitgeist" bg="bg-pastel-purple-500">
-          {isLoggedIn?(
+          {!isLoggedIn?(
             <>
             <MenuItem value="Home" page="home"/>
             <MenuItem value="Login" page="login"/>
@@ -19,7 +20,6 @@
           ):(
             <>
             <MenuItem value="Home" page="home"/>
-            
             <MenuItem value="Profile" page="login"/>
             <MenuItem value="Bookmark" page="bookmark"/>
             <MenuItem value="About Us" page="aboutus"/>

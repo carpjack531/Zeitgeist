@@ -6,24 +6,29 @@ import HomePage from "./pages/HomePage.jsx";
 import SettingsPage from "./pages/SettingsPage.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import {AuthContext} from "./api/AuthContext.jsx";
 import "./App.css";
 
 
 
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const updateIsLoggedIn = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("username"));
+    
+    const loginUser = () => {
       setIsLoggedIn(true);
-      console.log("Update I was called!!!");
-   };
-  return (
+    };
+    
+    useEffect(() => {
+        console.log("isLoggedIn (App - AFTER update): " + isLoggedIn);
+    }, [isLoggedIn])
+
+    return (
     //Avoids Prop Drilling
     <BrowserRouter>
-      <AuthContext.Provider value={{isLoggedIn, setIsLoggedIn, updateIsLoggedIn}}>
+      <AuthContext.Provider value={{isLoggedIn, setIsLoggedIn, loginUser}}>
         <Routes>
-          <Route path="/home" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage/>}/>
           <Route path="/signup" element={<SignupPage />} />
           {isLoggedIn&&(
