@@ -37,19 +37,16 @@ def shipIt(data: MoodData):
         "VALUES (%s, %s, %s, %s, %s, %s, %s)",
         (data.Date, data.Mood1, data.Mood2, data.Mood3, data.Mood4, data.Mood5, data.Headlines)
     )
+
+    ID = cursor.lastrowid
+
     connection.commit()
 
     connection.close()
     cursor.close()
 
-def getMoods():
-    connection = _getConnection()
-    cursor = connection.cursor()
-    cursor.execute("SELECT Mood1, Mood2, Mood3, Mood4, Mood5 FROM Moods")
-    moods = cursor.fetchone()
-    connection.close()
-    cursor.close()
-    return moods
+    return (ID)
+
 
 def getMoodFromId(id):
     connection = _getConnection()
