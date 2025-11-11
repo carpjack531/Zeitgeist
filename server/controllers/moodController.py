@@ -1,3 +1,5 @@
+from starlette.responses import JSONResponse
+
 from extras import ai,data
 from datetime import datetime
 from data import moodsDB, bookmarkDB
@@ -14,6 +16,7 @@ router = APIRouter(
 def getTodaysMood():
     AI = ai.AI()
     index = moodsDB.dateExists(datetime.now().date())
+    print(index)
     if index == -1:
         headlines = data.getHeadlines()
         mood = AI.getMood(headlines)
@@ -33,36 +36,37 @@ def getTodaysMood():
 
         MData.Headlines = "|".join(headlines)
 
-        moodsDB.shipIt(MData) #Might need some error handling, unsure
+        insertedID = moodsDB.shipIt(MData) #Might need some error handling, unsure
 
-        return {"Moods": [MData.Mood1, MData.Mood2, MData.Mood3, MData.Mood4, MData.Mood5]}
+        return {"Moods": [MData.Mood1, MData.Mood2, MData.Mood3, MData.Mood4, MData.Mood5], "MoodID": insertedID}
 
     else:
-        return{"Moods":moodsDB.getMoods()}
+        MData = moodsDB.getMoodFromId(index)
+        return{"Moods":[MData[2], MData[3], MData[4], MData[5], MData[6]], "MoodID": MData[0]}
 
-@router.get('/getOneFromID')
+@router.get('/history/getOneFromID/{moodID}')
 def getOneMoodID(moodID:str):
     try:
         MData = moodsDB.getMoodFromId(moodID)
         return {"Date": MData[1], "Mood1": MData[2], "Mood2":MData[3], "Mood3":MData[4], "Mood4":MData[5],"Mood5":MData[6], "Headlines": MData[7].split("|")}
     except Exception as e:
-        return{"Error": str(e)}
+        return JSONResponse({"message": str(e)}, status_code=500)
 
-@router.get('/getOneFromString')
-def getOneMoodString(Date:str):
+@router.get('/history/getOneFromDate/{Date}')
+def getOneMoodDate(Date:str):
     try:
         MData = moodsDB.getMoodFromDate(Date)
         return {"Date": MData[1], "Mood1": MData[2], "Mood2":MData[3], "Mood3":MData[4], "Mood4":MData[5],"Mood5":MData[6], "Headlines": MData[7].split("|")}
     except Exception as e:
-        return{"Error": str(e)}
+        return JSONResponse({"message": str(e)}, status_code=500)
 
-@router.get("/getHeadlines")
+@router.get("/history/getHeadlinesFromID/{moodID}")
 def getHeadlines(moodID:str):
     try:
         MData = moodsDB.getHeadlines(moodID)
         return MData
     except Exception as e:
-        return{"Error": str(e)}
+        return JSONResponse({"message": str(e)}, status_code=500)
 
 
 
