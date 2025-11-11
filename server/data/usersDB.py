@@ -25,9 +25,14 @@ def deleteUser(username):
     connection = _getConnection()
     cursor = connection.cursor()
     cursor.execute("DELETE FROM Users WHERE Username = %s", (username,))
+    userDeleted = False
+    if cursor.rowcount > 0:
+        userDeleted = True
     connection.commit()
     connection.close()
     cursor.close()
+    return userDeleted
+
 
 #We could try to add cookies but that might be overcomplicating stuff
 def loginUser(username, password):

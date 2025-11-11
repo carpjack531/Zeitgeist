@@ -1,3 +1,5 @@
+from starlette.responses import JSONResponse
+
 from extras import ai,data
 from datetime import datetime
 from data import moodsDB, bookmarkDB
@@ -48,7 +50,7 @@ def getOneMoodID(moodID:str):
         MData = moodsDB.getMoodFromId(moodID)
         return {"Date": MData[1], "Mood1": MData[2], "Mood2":MData[3], "Mood3":MData[4], "Mood4":MData[5],"Mood5":MData[6], "Headlines": MData[7].split("|")}
     except Exception as e:
-        return{"Error": str(e)}
+        return JSONResponse({"message": str(e)}, status_code=500)
 
 @router.get('/history/getOneFromDate')
 def getOneMoodDate(Date:str):
@@ -56,7 +58,7 @@ def getOneMoodDate(Date:str):
         MData = moodsDB.getMoodFromDate(Date)
         return {"Date": MData[1], "Mood1": MData[2], "Mood2":MData[3], "Mood3":MData[4], "Mood4":MData[5],"Mood5":MData[6], "Headlines": MData[7].split("|")}
     except Exception as e:
-        return{"Error": str(e)}
+        return JSONResponse({"message": str(e)}, status_code=500)
 
 @router.get("/history/getHeadlinesFromID")
 def getHeadlines(moodID:str):
@@ -64,7 +66,7 @@ def getHeadlines(moodID:str):
         MData = moodsDB.getHeadlines(moodID)
         return MData
     except Exception as e:
-        return{"Error": str(e)}
+        return JSONResponse({"message": str(e)}, status_code=500)
 
 
 
