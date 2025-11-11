@@ -23,16 +23,20 @@ def addBookmark(user: str, mood: str):
 def deleteBookmark(user: str, mood: str):
     connection = _getConnection()
     cursor = connection.cursor()
-
     cursor.execute("DELETE FROM Bookmarks WHERE UserID = %s AND MoodsID = %s", (user, mood))
+    userDeleted = False
+    if (cursor.rowcount > 0):
+        userDeleted = True
     connection.commit()
     connection.close()
     cursor.close()
+    return userDeleted
 
 def getBookmark(user: str, mood: str):
     connection = _getConnection()
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM Bookmarks WHERE UserID = %s AND MoodsID = %s", (user, mood))
+
     result = cursor.fetchone()
     connection.close()
     cursor.close()
