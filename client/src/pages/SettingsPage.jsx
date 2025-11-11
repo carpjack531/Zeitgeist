@@ -2,12 +2,12 @@ import React from 'react';
 import UserHeader from '../comps/UserHeader.jsx'
 import IMG_0849 from '../assets/IMG_0849.jpg'
 // based off of the ui from: https://flowbite.com/application-ui/demo/users/settings/
-const SettingsPage = (props) => {
+const SettingsPage = () => {
 
     const Entry = ({name,type})=>{
         return(
             <div className="flex items-start justify-around m-2">
-                <p className="min-w-sm">{name}</p>
+                <p className="min-w-">{name}</p>
                 <input className="bg-white" type={type}/>
             </div>
         )
