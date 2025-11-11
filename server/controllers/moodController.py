@@ -44,7 +44,7 @@ def getTodaysMood():
         MData = moodsDB.getMoodFromId(index)
         return{"Moods":[MData[2], MData[3], MData[4], MData[5], MData[6]], "MoodID": MData[0]}
 
-@router.get('/history/getOneFromID')
+@router.get('/history/getOneFromID/{moodID}')
 def getOneMoodID(moodID:str):
     try:
         MData = moodsDB.getMoodFromId(moodID)
@@ -52,7 +52,7 @@ def getOneMoodID(moodID:str):
     except Exception as e:
         return JSONResponse({"message": str(e)}, status_code=500)
 
-@router.get('/history/getOneFromDate')
+@router.get('/history/getOneFromDate/{Date}')
 def getOneMoodDate(Date:str):
     try:
         MData = moodsDB.getMoodFromDate(Date)
@@ -60,7 +60,7 @@ def getOneMoodDate(Date:str):
     except Exception as e:
         return JSONResponse({"message": str(e)}, status_code=500)
 
-@router.get("/history/getHeadlinesFromID")
+@router.get("/history/getHeadlinesFromID/{moodID}")
 def getHeadlines(moodID:str):
     try:
         MData = moodsDB.getHeadlines(moodID)

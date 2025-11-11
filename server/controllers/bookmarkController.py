@@ -25,15 +25,17 @@ def deleteBookmark(data:_classes.Bookmark):
     except Exception as e:
         return {"error": f"{e}"}
 
-@router.get('/getOne') #I don't think this will be used. EVER Unless we get more data in the bookmarks.
+@router.get('/getOne/{UserId}/{MoodId}') #I don't think this will be used. EVER Unless we get more data in the bookmarks.
 def getBookmark(UserId:int, MoodId:int):
     try:
         bookmark = bookmarkDB.getBookmark(UserId, MoodId)
+        if bookmark is None:
+            return JSONResponse({"message": "Bookmark Not Found"}, status_code=404)
         return {"Bookmark": bookmark}
     except Exception as e:
         return JSONResponse({"message": str(e)}, status_code=500)
 
-@router.get('/getAll')
+@router.get('/getAll/{UserID}')
 def getAllBookmarks(UserID:str):
     try:
         bookmarks = bookmarkDB.getAllBookmarks(UserID)
