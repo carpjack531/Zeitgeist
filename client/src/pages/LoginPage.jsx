@@ -1,9 +1,13 @@
-import { useState } from "react";
+//TO-DO: Implement actual backend authentication
+import { useState, useContext } from "react";
 import Header from "../comps/Header";
 import { users } from "../api/api";
+import {AuthContext} from "../api/AuthContext.jsx"
 
-const LoginPage = () =>{
-  
+const LoginPage = (props) =>{
+    const {updateIsLoggedIn} = useContext(AuthContext);
+
+
     //From inputs
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -11,6 +15,7 @@ const LoginPage = () =>{
     //Login feedback
     const [message, setMessage] = useState("");
 
+    
     const handleLogin = async (e) => {
     e.preventDefault();
     setMessage("Logging in...");
@@ -23,8 +28,10 @@ const LoginPage = () =>{
         if (result && !result.error) {
             //Store session in localStorage
             localStorage.setItem("username", email);
-            setMessage("Login successful!");
 
+            setMessage("Login successful!");
+            updateIsLoggedIn(true);
+            
         } else {
             setMessage("Invalid credentials");
         }
