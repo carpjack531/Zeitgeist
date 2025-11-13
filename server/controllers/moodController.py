@@ -1,3 +1,5 @@
+from starlette.responses import JSONResponse
+
 from extras import ai,data
 from datetime import datetime
 from data import moodsDB, bookmarkDB
@@ -42,29 +44,29 @@ def getTodaysMood():
         MData = moodsDB.getMoodFromId(index)
         return{"Moods":[MData[2], MData[3], MData[4], MData[5], MData[6]], "MoodID": MData[0]}
 
-@router.get('/history/getOneFromID')
+@router.get('/history/getOneFromID/{moodID}')
 def getOneMoodID(moodID:str):
     try:
         MData = moodsDB.getMoodFromId(moodID)
         return {"Date": MData[1], "Mood1": MData[2], "Mood2":MData[3], "Mood3":MData[4], "Mood4":MData[5],"Mood5":MData[6], "Headlines": MData[7].split("|")}
     except Exception as e:
-        return{"Error": str(e)}
+        return JSONResponse({"message": str(e)}, status_code=500)
 
-@router.get('/history/getOneFromDate')
+@router.get('/history/getOneFromDate/{Date}')
 def getOneMoodDate(Date:str):
     try:
         MData = moodsDB.getMoodFromDate(Date)
         return {"Date": MData[1], "Mood1": MData[2], "Mood2":MData[3], "Mood3":MData[4], "Mood4":MData[5],"Mood5":MData[6], "Headlines": MData[7].split("|")}
     except Exception as e:
-        return{"Error": str(e)}
+        return JSONResponse({"message": str(e)}, status_code=500)
 
-@router.get("/history/getHeadlinesFromID")
+@router.get("/history/getHeadlinesFromID/{moodID}")
 def getHeadlines(moodID:str):
     try:
         MData = moodsDB.getHeadlines(moodID)
         return MData
     except Exception as e:
-        return{"Error": str(e)}
+        return JSONResponse({"message": str(e)}, status_code=500)
 
 
 

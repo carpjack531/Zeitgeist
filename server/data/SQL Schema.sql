@@ -22,6 +22,9 @@ CREATE TABLE Bookmarks(
 
 CREATE TABLE Users(
 	userId INT AUTO_INCREMENT PRIMARY KEY,
+    emailAddress NVARCHAR(320) NOT NULL UNIQUE,
+    notifications TINYINT(1), -- Not sure the purpose of this but adding it.
+    dateOfBirth DATE NOT NULL,
     Username NVARCHAR(100) NOT NULL UNIQUE,
     Password CHAR(60) NOT NULL
 )
