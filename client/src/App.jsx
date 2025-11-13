@@ -1,10 +1,13 @@
-//TO-DO: Implement useAuth and ProtectedRoutes
+//TO-DO: 
+//-Implement useAuth and ProtectedRoutes
+//-Add Custom Path sht idkw its called
 
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import SettingsPage from "./pages/SettingsPage.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
+import Bookmarks from "./pages/Bookmarks.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {useState, useEffect} from "react"
 import {AuthContext} from "./api/AuthContext.jsx";
@@ -35,6 +38,7 @@ function App() {
           <>
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/bookmarks" element={<Bookmarks/>}/>
           </>
           )}
         </Routes>

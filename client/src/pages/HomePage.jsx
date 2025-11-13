@@ -67,7 +67,7 @@ const HomePage = () => {
     }
   };
 return (
-    <div className="min-h-screen flex flex-col items-center bg-pastel-purple-300">
+    <div className="min-h-screen min-w-screen flex flex-col items-center bg-pastel-purple-300">
       <UserHeader/>
 
       <div className="flex flex-col min-h-150 gap-6 text-center justify-center p-6">
