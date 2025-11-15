@@ -22,7 +22,7 @@ const Dropdown = (props) => {
   return (
     <>
       <div className="relative flex flex-col justify-center px-4">
-        <button onClick={toggleVisibility} className="mt-auto mb-auto text-lg">
+        <button  onClick={toggleVisibility} className="focus:animate-pulse mt-auto mb-auto text-lg">
           {props.label}
         </button>
         {isVisible ? (

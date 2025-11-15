@@ -1,7 +1,7 @@
 import MenuItem from "./MenuItem.jsx";
 import Header from "./Header.jsx";
 import { useContext } from "react";
-import { AuthContext } from "../api/AuthContext.jsx";
+import { AuthContext } from "@api/AuthContext.jsx";
 import Dropdown from "./Dropdown.jsx";
 
 const dropdown_options = [

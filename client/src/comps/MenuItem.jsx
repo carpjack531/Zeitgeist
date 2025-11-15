@@ -14,7 +14,6 @@ const MenuItem = (props) => {
 
   const changePage = async (page) => {
     const item = nav_items.get(page);
-    console.log(nav_items);
     if (!item) {
       return;
     }
