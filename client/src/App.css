@@ -12,6 +12,10 @@
   }
 
 }
+::webkit-scrollbar{
+  @apply bg-amber-900
+
+}
 @theme {
   --font-arimo: "Arimo", arimo;
   --color-navy-100: #4E56C0;

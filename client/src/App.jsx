@@ -1,6 +1,5 @@
 //TO-DO: 
 //-Implement useAuth and ProtectedRoutes
-//-Add Custom Path sht idkw its called
 
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage.jsx";
@@ -10,7 +9,7 @@ import AboutUs from "./pages/AboutUs.jsx";
 import Bookmarks from "./pages/Bookmarks.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {useState, useEffect} from "react"
-import {AuthContext} from "./api/AuthContext.jsx";
+import {AuthContext} from "@api/AuthContext.jsx";
 import "./App.css";
 
 

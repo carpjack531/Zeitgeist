@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import UserHeader from '../comps/UserHeader.jsx';
-import {mood} from '../api/api.js';
+import {mood} from '@api/api.js';
 import {AuthContext} from "../api/AuthContext.jsx"
 
 const HomePage = () => { 
