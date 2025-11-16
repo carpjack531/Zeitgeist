@@ -1,3 +1,6 @@
+//Remove this line once we get the server and getById paths up n running
+
+
 const serverUrl = "https://raspberrypi.taile333c3.ts.net"
 
 //Server Function
@@ -39,6 +42,11 @@ const users = {
 //Mood API
 const mood = {
     getToday: ()=>get(server("/mood/today")),
+    getById: ()=>{
+        //temp function until we get this sorted out
+        const testData = JSON.stringify(moods);
+        console.log(testData);
+    }
 }
 
 const get = async(url,responseFormat="json")=>{

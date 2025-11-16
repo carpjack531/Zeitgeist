@@ -2,27 +2,23 @@
 export const nav_config =  
 [
 {
-    name: "home",
-    authReq: false,
+    name: "",
 },
 {
     name: "login",
-    authReq: false,
 },
 {
     name: "signup",
-    authReq: false,
 },
 {
     name: "aboutus",
-    authReq: false,
 },
 {
     name: "settings",
     authReq: true,
 },
 {
-    name: "bookmark",
+    name: "bookmarks",
     authReq: true,
 }
 
