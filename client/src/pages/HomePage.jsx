@@ -3,6 +3,10 @@ import UserHeader from '../comps/UserHeader.jsx';
 import {mood} from '../api/api.js';
 import {AuthContext} from "../api/AuthContext.jsx"
 
+
+import EmojiRain from '../comps/EmojiRain.jsx';
+
+
 const HomePage = () => { 
   const [moodData, setMoodData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -80,6 +84,8 @@ return (
         ) : (
           <>
             <h1 className="text-6xl font-semibold break-words">{renderMainMood()}</h1>
+
+            <EmojiRain mainMood={renderMainMood()} />
 
             {moodData && Array.isArray(moodData.Moods) && (
               <div className="mt-6 text-left">
