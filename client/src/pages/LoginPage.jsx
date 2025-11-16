@@ -5,7 +5,7 @@ import { users } from "../api/api";
 import {AuthContext} from "../api/AuthContext.jsx"
 
 const LoginPage = (props) =>{
-    const {updateIsLoggedIn} = useContext(AuthContext);
+    const {loginUser} = useContext(AuthContext);
 
 
     //From inputs
@@ -30,7 +30,7 @@ const LoginPage = (props) =>{
             localStorage.setItem("username", email);
 
             setMessage("Login successful!");
-            updateIsLoggedIn(true);
+            loginUser();
             
         } else {
             setMessage("Invalid credentials");
