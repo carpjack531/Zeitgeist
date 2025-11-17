@@ -1,5 +1,4 @@
 import React from 'react';
-import IMG_0849 from '../assets/IMG_0849.jpg'
 // based off of the ui from: https://flowbite.com/application-ui/demo/users/settings/
 const SettingsPage = () => {
 
