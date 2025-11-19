@@ -19,6 +19,7 @@ def getTodaysMood():
     print(index)
     if index == -1:
         headlines = data.getHeadlines()
+        print(headlines)
         mood = AI.getMood(headlines)
 
         MData = _classes.MoodData

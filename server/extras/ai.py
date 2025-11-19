@@ -15,6 +15,8 @@ class AI():
             data += f"Headline {counter}: {headline}\n"
             counter += 1
 
+        print(headlines)
+
         mood = self.cohere.chat(
             message= data,
             model="command-r-plus-08-2024",
