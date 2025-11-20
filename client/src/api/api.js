@@ -1,5 +1,6 @@
-//Remove this line once we get the server and getById paths up n running
-
+//Remove thi the nedxt two lines once we get all the necessary sht up n running
+import moodsSample from "./moods-sample.json" with {type: 'json'}
+import bookmarksSample from "./bookmarks-sample.json" with {type:'json'}
 
 const serverUrl = "https://raspberrypi.taile333c3.ts.net"
 
@@ -9,6 +10,7 @@ const server = (endpoint) =>{
     return `${serverUrl}${endpoint}`;
 }
 
+//HTTP Mapping Functions
 //Generic POST function
 const post = async (url, data, responseFormat = "json") => {
     try {
@@ -28,26 +30,9 @@ const post = async (url, data, responseFormat = "json") => {
         return result;
     } catch (e) {
         console.log("POST Error: " + e);
+        return;
     }
 };
-
-//User API
-const users = {
-    getAll: () => get(server("/user/getAll")),
-    login: (name, password) => post(server("/user/login"), { name, password }),
-    addUser: (name, password) => post(server("/user/addUser"), { name, password }),
-    deleteUser: (Username) => post(server("/user/deleteUser"), { Username })
-};
-
-//Mood API
-const mood = {
-    getToday: ()=>get(server("/mood/today")),
-    getById: ()=>{
-        //temp function until we get this sorted out
-        const testData = JSON.stringify(moods);
-        console.log(testData);
-    }
-}
 
 const get = async(url,responseFormat="json")=>{
     try{
@@ -60,10 +45,49 @@ const get = async(url,responseFormat="json")=>{
     }
     catch(e){
         console.log("Response Error: " + e);
+        return;
     }
 }
+
+
+//User API
+const users = {
+    getAll: () => get(server("/user/getAll")),
+    login: (name, password) => post(server("/user/login"), { name, password }),
+    addUser: (name, password) => post(server("/user/addUser"), { name, password }),
+    deleteUser: (Username) => post(server("/user/deleteUser"), { Username })
+};
+
+//Mood API
+const mood = {
+    getToday: ()=>get(server("/mood/today")),
+    getById: (id)=>{ //replace with ts once we have the server + route up n running: (id) => getById(server(`/mood?id=${id}`))
+        return moodsSample[id];
+    }
+}
+
+//Bookmark API (AS OF WRITTING THESE ARE ALL TEMPORARY FUNCTIONS)
+const bookmarks={
+    getByUserId: (id)=>{ //ideally would have bookmarks routed to specific users, not have a dedicated db for it
+       return bookmarksSample[id];
+    },
+    addBookMark: (bookmark)=>{
+        return bookmarksSample.shift(bookmark)
+    },
+    deleteBookmarkById: (uid, bid)=>{
+        const result =  bookmarksSample[uid];
+        return result.splice(bid);
+    },
+
+}
+
+
+
+
+
 
 export{
    users, 
    mood,
+   bookmarks,
 }
