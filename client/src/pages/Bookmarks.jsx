@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const Bookmarks = () => {
   //Names need to be different from bookmarks, otherwise the name of the api will auto-set to bookmarks2 during runtime
   const [userBookmarks, setUserBookmarks] = useState([]);
-
+  const [selectedBookmark, setSelectedBookmark] = useState({});
   const userId = 1; //change to a prop once logged in
   //Scuffed test function(s) for testing purposes
 
@@ -17,15 +17,21 @@ const Bookmarks = () => {
       return mood.getById(item);
     });
     setUserBookmarks(fromMoodIds);
+    setSelectedBookmark(userBookmarks[0]);
+    console.log(selectedBookmark);
   };
 
-  const renderBookMark = (key) =>{
-    console.log("renderBookmark: " + key);
+  const renderBookmark = (key) =>{
+    return(
+      <div>
+
+      </div>
+    )
   }
 
-  const renderSideBar = () => {
+  const SideBar = () => {
     return (
-      <div className="bg-purple-500  max-h-screen flex flex-col font-bold items-center overflow-y-scroll 
+      <div className="fixed bg-purple-500 w-1/10 max-h-screen flex flex-col font-bold items-center overflow-y-scroll 
          [direction:rtl]
        [&::-webkit-scrollbar]:bg-purple-100 
        [&::-webkit-scrollbar-thumb]:bg-amber-500
@@ -37,7 +43,7 @@ const Bookmarks = () => {
           <button
             key={index}
             className="py-10 px-10 min-w-full border-b-pastel-purple-400 border-b-2 text-pastel-purple-300 focus:bg-black"
-            onClick={()=>{renderBookMark(index)}}
+            onClick={()=>{}}
           >
             <p>{mood.date}</p>
             <p>{mood.moods[0]}</p>
@@ -52,10 +58,12 @@ const Bookmarks = () => {
   }, []);
 
   return (
-    <div className="flex flex-row font-arimo  bg-blue-50 my-10 ">
-      
-       
-        {renderSideBar()}
+    <div className="flex flex-row font-arimo content-center min-h-screen bg-blue-50">
+      <SideBar/>
+      <div className="flex flex-row justify-center mx-auto  ml-auto">
+          <h1 className="my-auto">Hello</h1>
+          <h1 className=" ml-auto mb-auto">Hello</h1>
+      </div>
     
     </div>
   );
