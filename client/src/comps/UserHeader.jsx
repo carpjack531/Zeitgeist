@@ -3,6 +3,7 @@ import Header from "./Header.jsx";
 import { useContext } from "react";
 import { AuthContext } from "@api/AuthContext.jsx";
 import Dropdown from "./Dropdown.jsx";
+import ColourBackgroundChange from "./ColourBackgroundChange.jsx";
 
 const dropdown_options = [
 "Settings",
@@ -10,11 +11,12 @@ const dropdown_options = [
  "Logout",
 ];
 
-const UserHeader = () => {
+const UserHeader = ({ mainMood }) => {
   const { isLoggedIn } = useContext(AuthContext);
 
   return (
-    <Header title="Zeitgeist" bg="bg-pastel-purple-500">
+    <Header title="Zeitgeist" bg="relative">
+      <ColourBackgroundChange mainMood={mainMood} variant={1} className="absolute inset-0 -z-10" />
       {!isLoggedIn ? (
         <>
           <MenuItem value="Home" page="home" />

@@ -5,6 +5,7 @@ import {AuthContext} from "../api/AuthContext.jsx"
 import moodsSample from '../api/moods-sample.json';
 
 import EmojiRain from '../comps/EmojiRain.jsx';
+import ColourBackgroundChange from '../comps/ColourBackgroundChange.jsx';
 
 
 const HomePage = () => { 
@@ -125,9 +126,9 @@ const HomePage = () => {
     }
   };
 return (
-    <div className="min-h-screen min-w-screen flex flex-col items-center bg-pastel-purple-300">
-      <UserHeader/>
-
+    <div className="min-h-screen min-w-screen flex flex-col items-center">
+      <ColourBackgroundChange mainMood={renderMainMood()} />
+      <UserHeader mainMood={renderMainMood()} />
       <div className="flex flex-col min-h-150 gap-6 text-center justify-center p-6">
         <p className="font-semibold text-blue-500">Today's current mood is...</p>
 

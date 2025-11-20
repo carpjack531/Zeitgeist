@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutUs = () => {
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-amber-700 font-sans">
+        <div className="flex flex-col items-center justify-center min-h-screen font-sans">
             <h1 className="text-4xl">About Us</h1>
             <p className="mt-4">Here at QuantamEvolution(QE), we are dedicated to pushing the boundaries of technology and innovation. 
             Our mission is to create cutting-edge solutions that empower individuals and businesses to thrive in the digital age.
