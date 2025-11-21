@@ -15,6 +15,11 @@ def getHeadlines():
 
     return headlines
 
+def getCustomMood(link:str):
+    response = requests.get(link)
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    return soup.title.text
 
 # def getHeadlines():
 #     headlines = []

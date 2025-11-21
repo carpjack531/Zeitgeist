@@ -15,8 +15,6 @@ class AI():
             data += f"Headline {counter}: {headline}\n"
             counter += 1
 
-        print(headlines)
-
         mood = self.cohere.chat(
             message= data,
             model="command-r-plus-08-2024",
@@ -25,8 +23,67 @@ class AI():
             The mood could be whatever, as long as it's fitting for all the headlines.
             The structure of the headlines will be "Headline (number): (data)" where number is the number of the headline and data is the headline.
             You are to keep track of all headlines separated by 'Headline (number)' and understand the data from each to give an accurate mood
-            You are to give the top 5 moods for each group of headlines. Keep them consice and short
+            You are to give the top 5 moods for each group of headlines. Keep them concise and short
             Don't explain the reasoning, just give them like: 25% Hopeful, 25% Suspenseful, 25% Cheerful, 10% Dreamy, 15% Dark separated by a comma and a space
             Make the moods have different values. Don't make all moods be the same weight."""
         )
+        return mood.text
+
+
+    def getFrom1Headline(self, headline:str):
+        print("test")
+        mood = self.cohere.chat(
+            message=headline,
+            model="command-r-plus-08-2024",
+            temperature=0.2,
+            preamble="""You are to get all the headlines you are given and give a mood according to these headlines. 
+            The mood could be whatever, as long as it's fitting for all the headlines.
+            The structure of the headlines will be "Headline (number): (data)" where number is the number of the headline and data is the headline.
+            You are to keep track of all headlines separated by 'Headline (number)' and understand the data from each to give an accurate mood
+            You are to give the top 5 moods for each group of headlines. Keep them concise and short
+            Don't explain the reasoning, just give them like: 25% Hopeful, 25% Suspenseful, 25% Cheerful, 10% Dreamy, 15% Dark separated by a comma and a space
+            Make the moods have different values. Don't make all moods be the same weight."""
+        )
+        return mood.text
+
+    def getSummary(self, headlines:list):
+        data = ""
+        counter = 1
+        for headline in headlines:
+            data += f"Headline {counter}: {headline}\n"
+            counter += 1
+
+        mood = self.cohere.chat(
+                    message= data,
+                    model="command-r-plus-08-2024",
+                    temperature=0.2,
+                    preamble="""You are to get all the headlines you are given and give a summary according to these headlines. 
+                    The summary could be whatever, as long as it's fitting for all the headlines.
+                    The structure of the headlines will be "Headline (number): (data)" where number is the number of the headline and data is the headline.
+                    You are to keep track of all headlines separated by 'Headline (number)' and understand the data from each to give an accurate summary
+                    You are to give 1 mood for each group of headlines. Keep them concise and short
+                    Don't explain the reasoning, just make the summary fitting for all the headlines.
+                    Format it like = '(summary)' don't make it 'summary: (summary)' or a different format. Just write me the summary without any extra characters."""
+        )
+        if mood.text.startswith("="): #sometimes it starts w = so it removes it
+            mood.text = mood.text[1:].lstrip()
+        return mood.text
+
+    def getSummary1Headline(self, headlines:str):
+
+
+        mood = self.cohere.chat(
+                    message= headlines,
+                    model="command-r-plus-08-2024",
+                    temperature=0.2,
+                    preamble="""You are to get all the headlines you are given and give a summary according to these headlines. 
+                    The summary could be whatever, as long as it's fitting for all the headlines.
+                    The structure of the headlines will be "Headline (number): (data)" where number is the number of the headline and data is the headline.
+                    You are to keep track of all headlines separated by 'Headline (number)' and understand the data from each to give an accurate summary
+                    You are to give 1 mood for each group of headlines. Keep them concise and short
+                    Don't explain the reasoning, just make the summary fitting for all the headlines.
+                    Format it like = '(summary)' don't make it 'summary: (summary)' or a different format. Just write me the summary without any extra characters."""
+        )
+        if mood.text.startswith("="): #sometimes it starts w = so it removes it
+            mood.text = mood.text[1:].lstrip()
         return mood.text
