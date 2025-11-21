@@ -22,7 +22,7 @@ def login(userInfo: _classes.Login ):
     result = usersDB.loginUser(userInfo.emailAddress, userInfo.password)
     print(result)
     if result["status"] == "failed":
-        return JSONResponse(status_code=401, content={"error": f"{result["message"]}"})
+        return JSONResponse(status_code=401, content={"error": f"{result['message']}"})
     return result
 
 @router.post("/deleteUser/{Username}")

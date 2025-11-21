@@ -18,6 +18,7 @@ def defGetCustomMood(Link:str):
 
     headline = data.getCustomMood(Link)
     print(headline)
+    print("headline")
     mood = AI.getFrom1Headline(headline)
     MData = _classes.MoodData
     for i in range(0, 4):
