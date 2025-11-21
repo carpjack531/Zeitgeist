@@ -1,26 +1,49 @@
-//import { useState } from 'react'
-import LoginPage from './pages/LoginPage'
-import SignupPage from './pages/SignupPage.jsx'
-import HomePage from './pages/HomePage.jsx'
-import SettingsPage from './pages/SettingsPage.jsx'
-import UserHeader from './comps/UserHeader.jsx'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+//TO-DO: 
+//-Implement useAuth and ProtectedRoutes
 
-import './App.css'
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import SettingsPage from "./pages/SettingsPage.jsx";
+import AboutUs from "./pages/AboutUs.jsx";
+import Bookmarks from "./pages/Bookmarks.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {useState, useEffect} from "react"
+import {AuthContext} from "@api/AuthContext.jsx";
+import "./App.css";
+
+
+
 function App() {
-  return (
+    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("username"));
+    
+    const loginUser = () => {
+      setIsLoggedIn(true);
+    };
+    
+    useEffect(() => {
+        console.log("isLoggedIn (App - AFTER update): " + isLoggedIn);
+    }, [isLoggedIn])
+
+    return (
+    //Avoids Prop Drilling
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
-      </Routes>
+      <AuthContext.Provider value={{isLoggedIn, setIsLoggedIn, loginUser}}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage/>}/>
+          <Route path="/signup" element={<SignupPage />} />
+          {isLoggedIn&&(
+          <>
+          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/bookmarks" element={<Bookmarks/>}/>
+          </>
+          )}
+        </Routes>
+      </AuthContext.Provider>
     </BrowserRouter>
-  )
+  );
 }
 
-
-
-export default App
-
+export default App;
