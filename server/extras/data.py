@@ -10,7 +10,11 @@ def getHeadlines():
 
     headlines = []
     for item in r["results"][:5]:
-        headlines.append(item["title"])
+        title = item["title"]
+        headlines.append(title)
+
+    return headlines
+
 
 # def getHeadlines():
 #     headlines = []
