@@ -14,7 +14,7 @@ const HomePage = () => {
   const [error, setError] = useState(null);
   
   // Toggle this to switch between sample data and API
-  const USE_SAMPLE_DATA = true;
+  const USE_SAMPLE_DATA = false;
 
   // New function to fetch from sample data
   const fetchFromSample = async () => {

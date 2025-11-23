@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 const COLOR_PALETTE_SETS = [
   // words don't need to be exact for matches to be made cuz REGEX. 
   // Feel free to add more words/vibes AND/OR colours
-  [/(happy|joy|cheer|optimism|good)/i, [
+  [/(happy|joy|cheer|optimism|good|hopeful)/i, [
     '#FFD93D', // bright yellow
     '#FFEC99', // soft yellow
     '#F9C74F', // warm gold
