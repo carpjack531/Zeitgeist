@@ -12,13 +12,39 @@ router = APIRouter(
 )
 
 
+@router.post('/getMood')
+def defGetCustomMood(Link:str):
+    AI = ai.AI()
+
+    headline = data.getCustomMood(Link)
+    print(headline)
+    print("headline")
+    mood = AI.getFrom1Headline(headline)
+    MData = _classes.MoodData
+    for i in range(0, 4):
+        if i == 0:
+            MData.Mood1 = mood.split(", ")[i]
+        elif i == 1:
+            MData.Mood2 = mood.split(", ")[i]
+        elif i == 2:
+            MData.Mood3 = mood.split(", ")[i]
+        elif i == 3:
+            MData.Mood4 = mood.split(", ")[i]
+    MData.Mood5 = mood.split(", ")[4]
+
+    summary = AI.getSummary1Headline(headline)
+
+    return {"Moods": [MData.Mood1, MData.Mood2, MData.Mood3, MData.Mood4, MData.Mood5], "Summary": summary}
+
 @router.get('/today')
 def getTodaysMood():
     AI = ai.AI()
+    summary = ""
     index = moodsDB.dateExists(datetime.now().date())
     print(index)
     if index == -1:
         headlines = data.getHeadlines()
+        print(headlines)
         mood = AI.getMood(headlines)
 
         MData = _classes.MoodData
@@ -33,16 +59,21 @@ def getTodaysMood():
             elif i==3:
                 MData.Mood4 = mood.split(", ")[i]
         MData.Mood5 = mood.split(", ")[4]
-
+        summary = AI.getSummary(headlines)
         MData.Headlines = "|".join(headlines)
 
-        insertedID = moodsDB.shipIt(MData) #Might need some error handling, unsure
 
-        return {"Moods": [MData.Mood1, MData.Mood2, MData.Mood3, MData.Mood4, MData.Mood5], "MoodID": insertedID}
+
+        insertedID = moodsDB.shipIt(MData, summary) #Might need some error handling, unsure
+
+
+
+        return {"Moods": [MData.Mood1, MData.Mood2, MData.Mood3, MData.Mood4, MData.Mood5], "Summary": summary, "MoodID": insertedID}
 
     else:
         MData = moodsDB.getMoodFromId(index)
-        return{"Moods":[MData[2], MData[3], MData[4], MData[5], MData[6]], "MoodID": MData[0]}
+        print(MData[8])
+        return{"Moods":[MData[2], MData[3], MData[4], MData[5], MData[6]], "Summary": MData[8], "MoodID": MData[0]}
 
 @router.get('/history/getOneFromID/{moodID}')
 def getOneMoodID(moodID:str):

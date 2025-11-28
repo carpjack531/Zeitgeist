@@ -28,14 +28,14 @@ def dateExists(date):
     else:
         return -1
 
-def shipIt(data: MoodData):
+def shipIt(data: MoodData, Summary:str):
     connection = _getConnection()
     cursor = connection.cursor()
 
     cursor.execute(
-        "INSERT INTO Moods (moodDate, Mood1, Mood2, Mood3, Mood4, Mood5, Headlines) "
-        "VALUES (%s, %s, %s, %s, %s, %s, %s)",
-        (data.Date, data.Mood1, data.Mood2, data.Mood3, data.Mood4, data.Mood5, data.Headlines)
+        "INSERT INTO Moods (moodDate, Mood1, Mood2, Mood3, Mood4, Mood5, Headlines, Summary) "
+        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
+        (data.Date, data.Mood1, data.Mood2, data.Mood3, data.Mood4, data.Mood5, data.Headlines, Summary)
     )
 
     ID = cursor.lastrowid
@@ -74,3 +74,4 @@ def getHeadlines(id):
     connection.close()
     cursor.close()
     return headlines[0].split("|")
+
