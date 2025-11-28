@@ -5,6 +5,9 @@ export const nav_config =
     name: "",
 },
 {
+    name:"error",
+},
+{
     name: "login",
 },
 {

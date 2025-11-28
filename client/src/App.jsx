@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage.jsx";
 import SettingsPage from "./pages/SettingsPage.jsx";
 import AboutUs from "./pages/AboutUs.jsx";
 import Bookmarks from "./pages/Bookmarks.jsx";
+import ErrorPage from "./pages/ErrorPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {useState, useEffect} from "react"
 import {AuthContext} from "@api/AuthContext.jsx";
@@ -33,6 +34,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage/>}/>
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="*" element={<ErrorPage/>}/>
           {isLoggedIn&&(
           <>
           <Route path="/settings" element={<SettingsPage />} />

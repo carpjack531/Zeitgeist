@@ -6,18 +6,14 @@ const Dropdown = (props) => {
     setIsVisible(!isVisible);
     console.log(isVisible);
   };
-  //FIX:
-  // Replaced Curly Braces w Round Braces
-  // Removed Margins, as it caused issues with hover elements disappearing
+  
   let options = props.options.map((item, i) => (
     <a className="" key={i} value={item}>
       {item}
     </a>
   ));
 
-  //FIXES:
-  // Used group over peer to establish parent -> child relationship
-  //
+  
 
   return (
     <>

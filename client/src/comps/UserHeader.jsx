@@ -12,7 +12,7 @@ const dropdown_options = [
 
 const UserHeader = () => {
   const { isLoggedIn } = useContext(AuthContext);
-
+  
   return (
     <Header title="Zeitgeist" bg="bg-pastel-purple-500">
       {!isLoggedIn ? (
