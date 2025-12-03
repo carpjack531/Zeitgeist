@@ -1,4 +1,14 @@
 import { useState } from "react";
+import {useNavigateTo} from "@api/useNavigateTo.js"
+
+const DropdownItem = (props) =>{
+  const {goTo} = useNavigateTo(props.page);
+  return(
+     <button onClick={goTo}>
+      {props.text}
+    </button>
+  );
+}
 const Dropdown = (props) => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -8,9 +18,7 @@ const Dropdown = (props) => {
   };
   
   let options = props.options.map((item, i) => (
-    <a className="" key={i} value={item}>
-      {item}
-    </a>
+    <DropdownItem key={i} value={item} text={item} page={`${item.toLowerCase()}`}/>
   ));
 
   

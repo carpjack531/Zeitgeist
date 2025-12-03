@@ -82,6 +82,20 @@ const bookmarks={
 }
 
 
+const newBookmarks={
+    getByUserId: (id)=>{ //ideally would have bookmarks routed to specific users, not have a dedicated db for it
+       return bookmarksSample[id];
+    },
+    addBookMark: (bookmark)=>{
+        return bookmarksSample.shift(bookmark)
+    },
+    deleteBookmarkById: (uid, bid)=>{
+        const result =  bookmarksSample[uid];
+        return result.splice(bid);
+    },
+
+}
+
 
 
 
