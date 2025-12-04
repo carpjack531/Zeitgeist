@@ -79,6 +79,7 @@ const Bookmarks = () => {
               ))}
             </ul>
             </div>
+            <a href="/" className="text-center text-blue-600 font-semibold mt-8">Return to home screen</a>
           </>
         )}
       </div>

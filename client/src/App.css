@@ -1,23 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@300;400;600&display=swap');
 @import "tailwindcss";
 
-@layer base{
-  h1{
-    @apply text-6xl;
-    @apply font-bold;
-  }
-  h2{
-    @apply text-3xl;
-    @apply font-bold;
-  }
+:root{
+  /* font stacks */
+  --font-heading: "Poppins", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
 
-}
-::webkit-scrollbar{
-  @apply bg-amber-900
-
-}
-@theme {
-  --font-arimo: "Arimo", arimo;
+  /* color tokens (kept from original) */
   --color-navy-100: #4E56C0;
   --color-pastel-blue-100: #D5E3F0;
   --color-pastel-purple-100: #F6F4F7;
@@ -27,6 +17,49 @@
   --color-pastel-purple-500: #B39EB5;
 }
 
+/* base typography */
+@layer base{
+  html, body, #root{
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1{
+    @apply text-6xl;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  h2{
+    @apply text-3xl;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  code, pre, kbd, samp{
+    font-family: var(--font-mono);
+    font-weight: 400;
+  }
+}
+
+/* nicer scrollbar (webkit) */
+::-webkit-scrollbar{
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-thumb{
+  background: rgba(78,86,192,0.85); /* uses --color-navy-100 visually */
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-track{
+  background: rgba(0,0,0,0.04);
+}
+
+/* keep original root centering */
 #root {
   text-align: center;
 }

@@ -67,7 +67,7 @@ const COLOR_PALETTE_SETS = [
     '#9E2A2B'  // intense red-brown
   ]],
 
-  [/(celebrate|win|success|party)/i, [
+  [/(celebrate|win|success|party|determined)/i, [
     '#06D6A0', // bright mint
     '#1B9AAA', // teal
     '#FFD166', // celebratory gold

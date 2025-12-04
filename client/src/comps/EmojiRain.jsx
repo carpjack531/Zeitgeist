@@ -12,7 +12,7 @@ const EMOJI_SETS = [
   [/(tired|sleep|exhausting)/i,        ['😴','🥱','💤']],
   [/(love|romance|affection)/i,     ['❤️','💕','😍']],
   [/(stress|overwhelm|tense)/i,     ['😣','😵‍💫','⚠️']],
-  [/(celebrate|win|success|party)/i, ['🥳','🎊','🏆']],
+  [/(celebrate|win|success|party|determined)/i, ['🥳','🎊','🏆']],
 ];
 
 function pickEmojis(mainMood) {
