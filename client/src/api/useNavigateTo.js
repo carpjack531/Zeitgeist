@@ -15,7 +15,6 @@ export const useNavigateTo = (page)=>{
     let nav_route = navigate(`/${page}`); ;
     const item = nav_items.get(page);
     if (!item || (!isLoggedIn&&nav_items.authReq == true)) {
-      console.log('err');
       nav_route=navigate(`/error`);
     }
     navigate(nav_route);    
