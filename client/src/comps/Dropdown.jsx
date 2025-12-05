@@ -4,7 +4,7 @@ import {useNavigateTo} from "@api/useNavigateTo.js"
 const DropdownItem = (props) =>{
   const {goTo} = useNavigateTo(props.page);
   return(
-     <button onClick={goTo}>
+     <button className="border-b-solid p-1 border-b-2 border-gray-400" onClick={goTo}>
       {props.text}
     </button>
   );
@@ -27,7 +27,7 @@ const Dropdown = (props) => {
     <>
       <div className="relative flex flex-col justify-center px-4">
         <button  onClick={toggleVisibility} className="focus:animate-pulse mt-auto mb-auto text-lg">
-          {props.label}
+          {props.label}\
         </button>
         {isVisible ? (
           <div className="gap-5 absolute left-0 right-0 top-full flex flex-col border-b-solid">

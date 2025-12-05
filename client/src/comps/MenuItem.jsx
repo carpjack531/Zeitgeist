@@ -1,9 +1,11 @@
-
+//TO-DO Implement actual authentication to determine routing
 import {useNavigateTo} from "@api/useNavigateTo.js"
+import { AuthContext } from "../api/AuthContext.jsx";
 
+
+//Santisation-basically forces users to configure this from an external config file
 const MenuItem = (props) => {
   const {goTo} = useNavigateTo(props.page);
-
   return (
     <button
       onClick={goTo}
