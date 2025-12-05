@@ -30,7 +30,7 @@ const Dropdown = (props) => {
           {props.label}
         </button>
         {isVisible ? (
-          <div className="gap-5 absolute left-0 right-0 top-full flex flex-col  mt-4 bg-gray-400 ">
+          <div className="gap-5 absolute left-0 right-0 top-full flex flex-col border-b-solid">
             {options}
           </div>
         ) : null}
