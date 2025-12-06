@@ -11,6 +11,7 @@ import ErrorPage from "./pages/ErrorPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {useState, useEffect} from "react"
 import {AuthContext} from "@api/AuthContext.jsx";
+
 import "./App.css";
 
 
@@ -21,6 +22,10 @@ function App() {
     const loginUser = () => {
       setIsLoggedIn(true);
     };
+
+    const logoutUser = () =>{
+      setIsLoggedIn(false);
+    }
     
     useEffect(() => {
         console.log("isLoggedIn (App - AFTER update): " + isLoggedIn);
@@ -29,7 +34,7 @@ function App() {
     return (
     //Avoids Prop Drilling
     <BrowserRouter>
-      <AuthContext.Provider value={{isLoggedIn, setIsLoggedIn, loginUser}}>
+      <AuthContext.Provider value={{isLoggedIn,  loginUser, logoutUser}}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage/>}/>

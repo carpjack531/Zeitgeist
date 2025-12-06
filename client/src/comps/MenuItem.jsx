@@ -11,7 +11,7 @@ const MenuItem = (props) => {
       onClick={goTo}
       className="text-lg hover:animate-pulse hover:bg-cyan-50 rounded-2xl p-4"
     >
-      {props.value}{" "}
+      {props.value}
     </button>
   );
 };

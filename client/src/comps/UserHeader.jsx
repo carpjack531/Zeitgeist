@@ -8,7 +8,7 @@ import ColourBackgroundChange from "./ColourBackgroundChange.jsx";
 const dropdown_options = [
 "Settings", 
 "Bookmarks",
-"Logout",
+"Login",
 ];
 
 const UserHeader = ({ mainMood }) => {

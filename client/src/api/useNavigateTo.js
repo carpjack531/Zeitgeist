@@ -12,10 +12,11 @@ export const useNavigateTo = (page)=>{
   const isLoggedIn = useContext(AuthContext);
   
   const goTo = () =>{
-    let nav_route = navigate(`/${page}`); ;
+    let nav_route = (`/${page}`); ;
     const item = nav_items.get(page);
     if (!item || (!isLoggedIn&&nav_items.authReq == true)) {
-      nav_route=navigate(`/error`);
+      console.log("yo")
+      nav_route="/error"
     }
     navigate(nav_route);    
   }
