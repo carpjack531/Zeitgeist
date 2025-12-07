@@ -25,6 +25,7 @@ function App() {
 
   const logoutUser = () => {
     setIsLoggedIn(false);
+    localStorage.clear();
   };
 
   useEffect(() => {
