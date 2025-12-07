@@ -2,39 +2,55 @@ import { useState } from "react";
 import Header from "../comps/Header";
 import { users } from "../api/api";
 
-const SignupPage = () =>{
-  
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [message, setMessage] = useState("");
+const SignupPage = () => {
+  const [emailAddress, setEmailAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [dob, setDob] = useState("");
+  const [message, setMessage] = useState("");
 
-    const handleSignup = async (e) => {
-        e.preventDefault();
+  const isEmailValid = () => {
+    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    const isValid = regex.test(emailAddress);
+    if (!isValid) {
+      setEmailAddress("Error"); //temp
+      return;
+    }
+    handleSignup();
+  };
 
-        if (!username || !password) {
-        setMessage("Please enter both username and password.");
-        return;
-        }
+  const handleSetDob = (dob) => {
+    console.log("DOB: " + dob);
+    setDob(dob);
+  };
+  const handleSignup = async (e) => {
+    e.preventDefault();
 
-        setMessage("Creating account...");
+    if (!emailAddress || !password) {
+      setMessage("Please enter both username and password.");
+      return;
+    }
 
-        try {
-        const result = await users.addUser(username, password);
-        console.log("Signup Result:", result);
+    setMessage("Creating account...");
 
-        if (result?.User === "Registered") {
-          setMessage("Account created successfully! Redirecting to login...");
-          setTimeout(() => (window.location.href = "/login"), 1500);
-        } else {
-            setMessage(result?.message || "Signup failed. Try a different username/email.");
-        }
-        } catch (err) {
-        console.error("Error creating account:", err);
-        setMessage("Error connecting to server.");
-        }
-    };
+    try {
+      const result = await users.addUser(emailAddress, password);
+      console.log("Signup Result:", result);
 
-    return (
+      if (result?.User === "Registered") {
+        setMessage("Account created successfully! Redirecting to login...");
+        setTimeout(() => (window.location.href = "/login"), 1500);
+      } else {
+        setMessage(
+          result?.message || "Signup failed. Try a different username/email."
+        );
+      }
+    } catch (err) {
+      console.error("Error creating account:", err);
+      setMessage("Error connecting to server.");
+    }
+  };
+
+  return (
     <div className="min-h-screen bg-pastel-purple-300 flex flex-col py-20 justify-center items-center">
       <Header />
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -45,19 +61,23 @@ const SignupPage = () =>{
       </div>
 
       <form
-        onSubmit={handleSignup}
+        onSubmit={() => {
+          if (isEmailValid()) {
+            handleSignup();
+          }
+        }}
         className="mx-auto max-w-xl rounded-xl shadow-xl p-10 mt-5 mb-15 bg-pastel-purple-100"
       >
         <div className="mx-auto text-center">
           <label htmlFor="username" className="block font-semibold text-start">
-            Username or Email
+            Email Address
           </label>
           <input
             id="username"
             type="text"
             className="w-full p-2 rounded-md bg-gray-200 focus:bg-gray-50 mb-5"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={emailAddress}
+            onChange={(e) => setEmailAddress(e.target.value)}
             required
           />
 
@@ -73,6 +93,17 @@ const SignupPage = () =>{
             required
           />
 
+          <label htmlFor="password" className="block font-semibold text-start">
+            Date of Birth
+          </label>
+          <input
+            id="password"
+            type="date"
+            className="w-full p-2 rounded-md bg-gray-200 focus:bg-gray-50 mb-5"
+            value={dob}
+            onChange={(e) => handleSetDob(e.target.value)}
+            required
+          />
           {message && (
             <p className="text-center text-sm font-semibold text-red-600 mb-4">
               {message}
