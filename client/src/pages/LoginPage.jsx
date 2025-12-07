@@ -29,6 +29,7 @@ const LoginPage = (props) => {
 
         setMessage("Login successful!");
         loginUser();
+        setTimeout(() => (window.location.href = "/"), 1500);
       } else {
         setMessage("Invalid credentials");
       }
