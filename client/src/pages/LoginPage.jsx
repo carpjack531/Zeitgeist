@@ -14,10 +14,7 @@ const LoginPage = (props) => {
   //Login feedback
   const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    localStorage.clear();
-    logoutUser();
-  }, []);
+  useEffect(() => {}, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();

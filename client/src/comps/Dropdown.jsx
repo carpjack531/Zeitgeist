@@ -6,7 +6,7 @@ const DropdownItem = (props) => {
   return (
     <button
       className="border-b-solid p-1 border-b-2 border-gray-400"
-      onClick={goTo}
+      onClick={props.customFunc ? props.customFunc : goTo}
     >
       {props.text}
     </button>
@@ -20,14 +20,29 @@ const Dropdown = (props) => {
     console.log(isVisible);
   };
 
-  let options = props.options.map((item, i) => (
-    <DropdownItem
-      key={i}
-      value={item}
-      text={item}
-      page={`${item.toLowerCase()}`}
-    />
-  ));
+  let options = props.options.map((item, i) => {
+    if (item.customFunc) {
+      return (
+        <DropdownItem
+          key={i}
+          value={item.page}
+          text={item.text}
+          customFunc={item.customFunc}
+          item={item}
+        />
+      );
+    } else {
+      return (
+        <DropdownItem
+          key={i}
+          value={item.page}
+          text={item.text}
+          page={item.path}
+          item={item}
+        />
+      );
+    }
+  });
 
   return (
     <>

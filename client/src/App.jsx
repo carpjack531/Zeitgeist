@@ -1,4 +1,4 @@
-//TO-DO: 
+//TO-DO:
 //-Implement useAuth and ProtectedRoutes
 
 import LoginPage from "./pages/LoginPage";
@@ -9,43 +9,44 @@ import AboutUs from "./pages/AboutUs.jsx";
 import Bookmarks from "./pages/Bookmarks.jsx";
 import ErrorPage from "./pages/ErrorPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {useState, useEffect} from "react"
-import {AuthContext} from "@api/AuthContext.jsx";
+import { useState, useEffect } from "react";
+import { AuthContext } from "@api/AuthContext.jsx";
 
 import "./App.css";
 
-
-
 function App() {
-    const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("username"));
-    
-    const loginUser = () => {
-      setIsLoggedIn(true);
-    };
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    !!localStorage.getItem("username")
+  );
 
-    const logoutUser = () =>{
-      setIsLoggedIn(false);
-    }
-    
-    useEffect(() => {
-        console.log("isLoggedIn (App - AFTER update): " + isLoggedIn);
-    }, [isLoggedIn])
+  const loginUser = () => {
+    setIsLoggedIn(true);
+  };
 
-    return (
+  const logoutUser = () => {
+    setIsLoggedIn(false);
+  };
+
+  useEffect(() => {
+    console.log("isLoggedIn (App.jsx): " + isLoggedIn);
+  }, []);
+
+  return (
     //Avoids Prop Drilling
     <BrowserRouter>
-      <AuthContext.Provider value={{isLoggedIn,  loginUser, logoutUser}}>
+      <AuthContext.Provider value={{ isLoggedIn, loginUser, logoutUser }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage/>}/>
+          <Route path="*" element={<ErrorPage />} />
+
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="*" element={<ErrorPage/>}/>
-          {isLoggedIn&&(
-          <>
-          <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/aboutus" element={<AboutUs />} />
-          <Route path="/bookmarks" element={<Bookmarks/>}/>
-          </>
+          {isLoggedIn && (
+            <>
+              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/aboutus" element={<AboutUs />} />
+              <Route path="/bookmarks" element={<Bookmarks />} />
+            </>
           )}
         </Routes>
       </AuthContext.Provider>
