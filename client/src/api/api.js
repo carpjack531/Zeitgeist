@@ -14,7 +14,7 @@ const server = (endpoint) =>{
 //Generic POST function
 const post = async (url, data, responseFormat = "json") => {
     try {
-        console.log("post data: " + JSON.stringify(data));
+        console.log("post data: \n" + JSON.stringify(data,null,1));
         let response = await fetch(url, {
             method: "POST",
             headers: {
@@ -27,7 +27,7 @@ const post = async (url, data, responseFormat = "json") => {
         if (!response.ok) {
             //console.log("Response Content-Type:", response.headers.get("Content-Type"));
             let errorBody =  await response.json();
-            console.log("JSON Response" + JSON.stringify(errorBody));
+            console.log(`GET ERROR ${response.status}:\n ${JSON.stringify(errorBody,null, 1)}`);
             throw new Error(errorBody);
         }
 
@@ -44,7 +44,7 @@ const get = async(url,responseFormat="json")=>{
         let response= await fetch(url);
         if(!response.ok){
             let errorBody =  await response.json();
-            console.log("JSON Response" + JSON.stringify(errorBody));
+            console.log(`GET ERROR ${response.status}:\n ${JSON.stringify(errorBody,null, 1)}`);
             throw new Error(errorBody);
         }
         let result = await response[responseFormat]();
@@ -60,7 +60,7 @@ const get = async(url,responseFormat="json")=>{
 //User API
    const users = {
     getAll: () => get(server("/user/getAll")),
-    login: (username, password) => post(server("/user/login"), { username, password }),
+    login: (emailAddress, password) => post(server("/user/login"), { emailAddress, password }),
     addUser: (username, password) => post(server("/user/addUser"), { username, password }),
     deleteUser: (username) => post(server("/user/deleteUser"), { username })
 };
