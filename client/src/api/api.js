@@ -61,7 +61,7 @@ const get = async(url,responseFormat="json")=>{
    const users = {
     getAll: () => get(server("/user/getAll")),
     login: (emailAddress, password) => post(server("/user/login"), { emailAddress, password }),
-    addUser: (username, password) => post(server("/user/addUser"), { username, password }),
+    addUser: (emailAddress, password) => post(server("/user/addUser"), { emailAddress, password }),
     deleteUser: (username) => post(server("/user/deleteUser"), { username })
 };
 

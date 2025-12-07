@@ -5,7 +5,7 @@ import { users } from "../api/api";
 import { AuthContext } from "../api/AuthContext.jsx";
 
 const LoginPage = (props) => {
-  const { loginUser, logoutUser } = useContext(AuthContext);
+  const { loginUser } = useContext(AuthContext);
 
   //From inputs
   const [email, setEmail] = useState("");
@@ -13,8 +13,6 @@ const LoginPage = (props) => {
 
   //Login feedback
   const [message, setMessage] = useState("");
-
-  useEffect(() => {}, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
