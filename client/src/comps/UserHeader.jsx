@@ -5,30 +5,18 @@ import { AuthContext } from "@api/AuthContext.jsx";
 import Dropdown from "./Dropdown.jsx";
 import ColourBackgroundChange from "./ColourBackgroundChange.jsx";
 
-const UserHeader = ({ mainMood }) => {
-  const { isLoggedIn, logoutUser } = useContext(AuthContext);
+const dropdown_options = [
+"Settings", 
+"Bookmarks",
+"Logout",
+];
 
-  const dropdown_options = [
-    {
-      text: "Settings",
-      path: "settings",
-    },
-    {
-      text: "Bookmarks",
-      path: "bookmarks",
-    },
-    {
-      text: "Logout",
-      customFunc: logoutUser,
-    },
-  ];
+const UserHeader = ({ mainMood }) => {
+  const { isLoggedIn } = useContext(AuthContext);
+  
   return (
     <Header title="Zeitgeist" bg="relative">
-      <ColourBackgroundChange
-        mainMood={mainMood}
-        variant={1}
-        className="absolute inset-0 -z-10"
-      />
+      <ColourBackgroundChange mainMood={mainMood} variant={1} className="absolute inset-0 -z-10" />
       {!isLoggedIn ? (
         <>
           <MenuItem value="Home" page="home" />
@@ -40,7 +28,7 @@ const UserHeader = ({ mainMood }) => {
       ) : (
         <>
           <MenuItem value="Home" page="home" />
-          <Dropdown options={dropdown_options} label="Profile" />
+          <Dropdown options={dropdown_options} label="Profile"/>
           <MenuItem value="About Us" page="aboutus" />
         </>
       )}

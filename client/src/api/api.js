@@ -14,21 +14,16 @@ const server = (endpoint) =>{
 //Generic POST function
 const post = async (url, data, responseFormat = "json") => {
     try {
-        console.log("post data: \n" + JSON.stringify(data,null,1));
         let response = await fetch(url, {
             method: "POST",
             headers: {
-                'Accept': 'application/json',
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(data)
         });
 
         if (!response.ok) {
-            //console.log("Response Content-Type:", response.headers.get("Content-Type"));
-            let errorBody =  await response.json();
-            console.log(`GET ERROR ${response.status}:\n ${JSON.stringify(errorBody,null, 1)}`);
-            throw new Error(errorBody);
+            throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         let result = await response[responseFormat]();
@@ -43,26 +38,24 @@ const get = async(url,responseFormat="json")=>{
     try{
         let response= await fetch(url);
         if(!response.ok){
-            let errorBody =  await response.json();
-            console.log(`GET ERROR ${response.status}:\n ${JSON.stringify(errorBody,null, 1)}`);
-            throw new Error(errorBody);
+            throw new Error(JSON.stringify(response.json));
         }
         let result = await response[responseFormat]();
         return result;
     }
     catch(e){
-        console.log("Response Error: " + e.message);
+        console.log("Response Error: " + e);
         return;
     }
 }
 
 
 //User API
-   const users = {
+const users = {
     getAll: () => get(server("/user/getAll")),
-    login: (emailAddress, password) => post(server("/user/login"), { emailAddress, password }),
-    addUser: (emailAddress, password) => post(server("/user/addUser"), { emailAddress, password }),
-    deleteUser: (username) => post(server("/user/deleteUser"), { username })
+    login: (name, password) => post(server("/user/login"), { name, password }),
+    addUser: (name, password) => post(server("/user/addUser"), { name, password }),
+    deleteUser: (Username) => post(server("/user/deleteUser"), { Username })
 };
 
 //Mood API
@@ -89,6 +82,19 @@ const bookmarks={
 }
 
 
+const newBookmarks={
+    getByUserId: (id)=>{ //ideally would have bookmarks routed to specific users, not have a dedicated db for it
+       return bookmarksSample[id];
+    },
+    addBookMark: (bookmark)=>{
+        return bookmarksSample.shift(bookmark)
+    },
+    deleteBookmarkById: (uid, bid)=>{
+        const result =  bookmarksSample[uid];
+        return result.splice(bid);
+    },
+
+}
 
 
 
