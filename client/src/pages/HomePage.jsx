@@ -151,6 +151,7 @@ const HomePage = () => {
             <h1 className="text-6xl font-semibold break-words">
               {renderMainMood()}
             </h1>
+            <input type="checkbox" />
 
             <EmojiRain mainMood={renderMainMood()} />
             {moodData && Array.isArray(moodData.Moods) && (
