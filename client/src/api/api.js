@@ -57,13 +57,26 @@ const get = async(url,responseFormat="json")=>{
 }
 
 
-//User API
-   const users = {
-    getAll: () => get(server("/user/getAll")),
-    login: (emailAddress, password) => post(server("/user/login"), { emailAddress, password }),
-    addUser: (emailAddress, password) => post(server("/user/addUser"), { emailAddress, password }),
-    deleteUser: (username) => post(server("/user/deleteUser"), { username })
+// User API
+const users = {
+  getAll: () => get(server("/user/getAll")),
+
+  login: (emailAddress, password) =>
+    post(server("/user/login"), { emailAddress, password }),
+
+  addUser: (username, emailAddress, password, dateOfBirth) =>
+    post(server("/user/addUser"), {
+      name: username,
+      emailAddress,
+      password,
+      dateOfBirth,
+      notifications: false
+    }),
+
+  deleteUser: (username) =>
+    post(server("/user/deleteUser"), { username })
 };
+
 
 //Mood API
 const mood = {
@@ -87,12 +100,6 @@ const bookmarks={
     },
 
 }
-
-
-
-
-
-
 
 export{
    users, 
