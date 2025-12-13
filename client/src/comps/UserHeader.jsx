@@ -29,18 +29,17 @@ const UserHeader = ({ mainMood }) => {
         variant={1}
         className="absolute inset-0 -z-10"
       />
+      <MenuItem value="Home" page="" />
       {!isLoggedIn ? (
         <>
-          <MenuItem value="Home" page="home" />
           <MenuItem value="Login" page="login" />
           <MenuItem value="Sign Up" page="signup" />
-          <MenuItem value="Settings" page="settings" />
           <MenuItem value="About Us" page="aboutus" />
         </>
       ) : (
         <>
-          <MenuItem value="Home" page="home" />
           <Dropdown options={dropdown_options} label="Profile" />
+          <MenuItem value="Settings" page="settings" />
           <MenuItem value="About Us" page="aboutus" />
         </>
       )}

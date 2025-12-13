@@ -42,10 +42,10 @@ function App() {
 
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
+          <Route path="/aboutus" element={<AboutUs />} />
           {isLoggedIn && (
             <>
               <Route path="/settings" element={<SettingsPage />} />
-              <Route path="/aboutus" element={<AboutUs />} />
               <Route path="/bookmarks" element={<Bookmarks />} />
             </>
           )}
