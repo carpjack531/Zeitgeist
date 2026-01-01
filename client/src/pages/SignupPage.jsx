@@ -2,41 +2,55 @@ import { useState } from "react";
 import Header from "../comps/Header";
 import { users } from "../api/api";
 
-const SignupPage = () =>{
-  
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [message, setMessage] = useState("");
+const SignupPage = () => {
+  const [username, setUsername] = useState("");
+  const [emailAddress, setEmailAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [dob, setDob] = useState("");
+  const [message, setMessage] = useState("");
 
-    const handleSignup = async (e) => {
-        e.preventDefault();
+  const isEmailValid = () => {
+    const regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    return regex.test(emailAddress);
+  };
 
-        if (!username || !password) {
-        setMessage("Please enter both username and password.");
-        return;
-        }
+  const handleSignup = async (e) => {
+    e.preventDefault();
 
-        setMessage("Creating account...");
+    if (!username || !emailAddress || !password) {
+      setMessage("Please enter username, email, and password.");
+      return;
+    }
 
-        try {
-        const result = await users.addUser(username, password);
-        console.log("Signup Result:", result);
+    if (!isEmailValid()) {
+      setMessage("Please enter a valid email address.");
+      return;
+    }
 
-        if (result?.User === "Registered") {
-          setMessage("Account created successfully! Redirecting to login...");
-          setTimeout(() => (window.location.href = "/login"), 1500);
-        } else {
-            setMessage(result?.message || "Signup failed. Try a different username/email.");
-        }
-        } catch (err) {
-        console.error("Error creating account:", err);
-        setMessage("Error connecting to server.");
-        }
-    };
+    setMessage("Creating account...");
 
-    return (
+    try {
+      // 👇 pass username to API
+      const result = await users.addUser(username, emailAddress, password, dob);
+
+      console.log("Signup Result:", result);
+
+      if (result?.User === "Registered") {
+        setMessage("Account created successfully! Redirecting to login...");
+        setTimeout(() => (window.location.href = "/login"), 1500);
+      } else {
+        setMessage(result?.message || "Signup failed.");
+      }
+    } catch (err) {
+      console.error("Error creating account:", err);
+      setMessage("Error connecting to server.");
+    }
+  };
+
+  return (
     <div className="min-h-screen bg-pastel-purple-300 flex flex-col py-20 justify-center items-center">
       <Header />
+
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h1 className="text-center text-3xl font-extrabold mb-5">Sign Up</h1>
         <a href="/login" className="text-center text-blue-600 font-semibold">
@@ -49,11 +63,12 @@ const SignupPage = () =>{
         className="mx-auto max-w-xl rounded-xl shadow-xl p-10 mt-5 mb-15 bg-pastel-purple-100"
       >
         <div className="mx-auto text-center">
-          <label htmlFor="username" className="block font-semibold text-start">
-            Username or Email
+
+          {/* Username */}
+          <label className="block font-semibold text-start">
+            Username
           </label>
           <input
-            id="username"
             type="text"
             className="w-full p-2 rounded-md bg-gray-200 focus:bg-gray-50 mb-5"
             value={username}
@@ -61,15 +76,39 @@ const SignupPage = () =>{
             required
           />
 
-          <label htmlFor="password" className="block font-semibold text-start">
+          {/* Email */}
+          <label className="block font-semibold text-start">
+            Email Address
+          </label>
+          <input
+            type="email"
+            className="w-full p-2 rounded-md bg-gray-200 focus:bg-gray-50 mb-5"
+            value={emailAddress}
+            onChange={(e) => setEmailAddress(e.target.value)}
+            required
+          />
+
+          {/* Password */}
+          <label className="block font-semibold text-start">
             Password
           </label>
           <input
-            id="password"
             type="password"
             className="w-full p-2 rounded-md bg-gray-200 focus:bg-gray-50 mb-5"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+
+          {/* DOB */}
+          <label className="block font-semibold text-start">
+            Date of Birth
+          </label>
+          <input
+            type="date"
+            className="w-full p-2 rounded-md bg-gray-200 focus:bg-gray-50 mb-5"
+            value={dob}
+            onChange={(e) => setDob(e.target.value)}
             required
           />
 
